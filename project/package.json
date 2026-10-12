@@ -1,0 +1,49 @@
+{
+  "name": "hustlehub-plus",
+  "version": "1.0.0",
+  "description": "HustleHub+ - Secure freelance marketplace platform (Part 2: Secure Freelance Marketplace)",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "jest --runInBand --verbose",
+    "test:watch": "jest --watch --runInBand",
+    "certs": "node scripts/generate-certs.js",
+    "newman": "newman run postman/HustleHubPlus-Part2-Marketplace.postman_collection.json"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.0",
+    "morgan": "^1.10.0",
+    "selfsigned": "^2.4.1",
+    "winston": "^3.14.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^9.1.1",
+    "nodemon": "^3.1.4",
+    "newman": "^6.2.1",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  }
+}

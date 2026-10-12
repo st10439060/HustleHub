@@ -1,0 +1,423 @@
+{
+  "info": {
+    "name": "HustleHub+ Part 2 Marketplace",
+    "_postman_id": "hustlehub-plus-part2",
+    "description": "End-to-end evidence collection for auth, RBAC, gigs, bookings, simulated transactions, booking workflow, income, and security failures.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "clientToken", "value": "" },
+    { "key": "freelancerToken", "value": "" },
+    { "key": "gigId", "value": "" },
+    { "key": "bookingId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Register client",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('created client', () => pm.expect(pm.response.code).to.eql(201));",
+              "pm.collectionVariables.set('clientToken', pm.response.json().token);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Demo Client\",\n  \"email\": \"client@example.com\",\n  \"password\": \"Str0ng!Pass\",\n  \"role\": \"client\"\n}" },
+        "url": "{{baseUrl}}/api/auth/register"
+      }
+    },
+    {
+      "name": "Register freelancer",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('created freelancer', () => pm.expect(pm.response.code).to.eql(201));",
+              "pm.collectionVariables.set('freelancerToken', pm.response.json().token);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Demo Freelancer\",\n  \"email\": \"freelancer@example.com\",\n  \"password\": \"Str0ng!Pass\",\n  \"role\": \"freelancer\"\n}" },
+        "url": "{{baseUrl}}/api/auth/register"
+      }
+    },
+    {
+      "name": "Duplicate registration rejected (409)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('duplicate email blocked', () => pm.expect(pm.response.code).to.eql(409));",
+              "pm.test('success is false', () => pm.expect(pm.response.json().success).to.eql(false));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Demo Freelancer\",\n  \"email\": \"freelancer@example.com\",\n  \"password\": \"Str0ng!Pass\",\n  \"role\": \"freelancer\"\n}" },
+        "url": "{{baseUrl}}/api/auth/register"
+      }
+    },
+    {
+      "name": "Weak password rejected (422)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('weak password blocked', () => pm.expect(pm.response.code).to.eql(422));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Weak User\",\n  \"email\": \"weak@example.com\",\n  \"password\": \"abc\",\n  \"role\": \"client\"\n}" },
+        "url": "{{baseUrl}}/api/auth/register"
+      }
+    },
+    {
+      "name": "Login client",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('login succeeded', () => pm.expect(pm.response.code).to.eql(200));",
+              "pm.test('token returned', () => pm.expect(pm.response.json().token).to.be.a('string'));",
+              "pm.collectionVariables.set('clientToken', pm.response.json().token);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"client@example.com\",\n  \"password\": \"Str0ng!Pass\"\n}" },
+        "url": "{{baseUrl}}/api/auth/login"
+      }
+    },
+    {
+      "name": "Freelancer creates gig",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('gig created', () => pm.expect(pm.response.code).to.eql(201));",
+              "pm.test('gig has title', () => pm.expect(pm.response.json().gig.title).to.eql('A polished landing page'));",
+              "pm.collectionVariables.set('gigId', pm.response.json().gig._id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"A polished landing page\",\n  \"description\": \"I will design a thoughtful landing page for your next product launch.\",\n  \"category\": \"Design\",\n  \"price\": 120,\n  \"deliveryDays\": 7\n}" },
+        "url": "{{baseUrl}}/api/gigs"
+      }
+    },
+    {
+      "name": "Client browses gigs",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('gigs returned', () => pm.expect(pm.response.code).to.eql(200));",
+              "pm.test('at least one gig', () => pm.expect(pm.response.json().gigs.length).to.be.above(0));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/gigs"
+      }
+    },
+    {
+      "name": "Client books gig",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('booking created', () => pm.expect(pm.response.code).to.eql(201));",
+              "pm.collectionVariables.set('bookingId', pm.response.json().booking._id);",
+              "pm.test('simulated transaction created', () => pm.expect(pm.response.json().transaction.status).to.eql('paid'));",
+              "pm.test('transaction has platform fee', () => pm.expect(pm.response.json().transaction.platformFee).to.be.above(0));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{clientToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"gigId\": \"{{gigId}}\",\n  \"requirements\": \"Please use the attached brand direction.\"\n}" },
+        "url": "{{baseUrl}}/api/bookings"
+      }
+    },
+    {
+      "name": "Freelancer sees incoming booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('bookings returned', () => pm.expect(pm.response.code).to.eql(200));",
+              "pm.test('at least one booking', () => pm.expect(pm.response.json().bookings.length).to.be.above(0));",
+              "pm.test('booking is pending', () => pm.expect(pm.response.json().bookings[0].status).to.eql('pending'));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{freelancerToken}}" }],
+        "url": "{{baseUrl}}/api/bookings"
+      }
+    },
+    {
+      "name": "Freelancer accepts booking (status workflow)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('booking accepted', () => pm.expect(pm.response.code).to.eql(200));",
+              "pm.test('status is accepted', () => pm.expect(pm.response.json().booking.status).to.eql('accepted'));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"status\": \"accepted\"\n}" },
+        "url": "{{baseUrl}}/api/bookings/{{bookingId}}/status"
+      }
+    },
+    {
+      "name": "Freelancer marks booking in progress",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('booking in progress', () => pm.expect(pm.response.code).to.eql(200));",
+              "pm.test('status is in_progress', () => pm.expect(pm.response.json().booking.status).to.eql('in_progress'));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"status\": \"in_progress\"\n}" },
+        "url": "{{baseUrl}}/api/bookings/{{bookingId}}/status"
+      }
+    },
+    {
+      "name": "Freelancer completes booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('booking completed', () => pm.expect(pm.response.code).to.eql(200));",
+              "pm.test('status is completed', () => pm.expect(pm.response.json().booking.status).to.eql('completed'));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"status\": \"completed\"\n}" },
+        "url": "{{baseUrl}}/api/bookings/{{bookingId}}/status"
+      }
+    },
+    {
+      "name": "Freelancer income summary",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('income returned', () => pm.expect(pm.response.code).to.eql(200));",
+              "pm.test('gross is positive', () => pm.expect(pm.response.json().summary.gross).to.be.above(0));",
+              "pm.test('platform fees are positive', () => pm.expect(pm.response.json().summary.fees).to.be.above(0));",
+              "pm.test('estimated tax calculated', () => pm.expect(pm.response.json().summary.estimatedTax).to.be.at.least(0));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{freelancerToken}}" }],
+        "url": "{{baseUrl}}/api/income"
+      }
+    },
+    {
+      "name": "Client cannot create gig (RBAC 403)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('client blocked from freelancer action', () => pm.expect(pm.response.code).to.eql(403));",
+              "pm.test('success is false', () => pm.expect(pm.response.json().success).to.eql(false));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{clientToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\"title\":\"Not allowed\",\"description\":\"This request should be rejected by RBAC checks.\",\"category\":\"Design\",\"price\":10,\"deliveryDays\":1}" },
+        "url": "{{baseUrl}}/api/gigs"
+      }
+    },
+    {
+      "name": "Unauthenticated gig creation rejected (401)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('no token blocked', () => pm.expect(pm.response.code).to.eql(401));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"title\":\"Anon attempt\",\"description\":\"This should be rejected without a token.\",\"category\":\"Design\",\"price\":10,\"deliveryDays\":1}" },
+        "url": "{{baseUrl}}/api/gigs"
+      }
+    },
+    {
+      "name": "Unauthenticated bookings list rejected (401)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('no token blocked', () => pm.expect(pm.response.code).to.eql(401));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/bookings"
+      }
+    },
+    {
+      "name": "Invalid booking status transition rejected (409)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('invalid transition blocked', () => pm.expect(pm.response.code).to.eql(409));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"status\": \"pending\"\n}" },
+        "url": "{{baseUrl}}/api/bookings/{{bookingId}}/status"
+      }
+    },
+    {
+      "name": "Gig validation rejects missing fields (422)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('validation blocked', () => pm.expect(pm.response.code).to.eql(422));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"Hi\",\n  \"description\": \"short\",\n  \"category\": \"\",\n  \"price\": 0\n}" },
+        "url": "{{baseUrl}}/api/gigs"
+      }
+    },
+    {
+      "name": "Security headers present (CSP + Helmet)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Content-Security-Policy header set', () => {",
+              "  const csp = pm.response.headers.get('Content-Security-Policy');",
+              "  pm.expect(csp).to.not.be.null;",
+              "});",
+              "pm.test('X-Content-Type-Options set', () => {",
+              "  pm.expect(pm.response.headers.get('X-Content-Type-Options')).to.eql('nosniff');",
+              "});",
+              "pm.test('X-Frame-Options set', () => {",
+              "  pm.expect(pm.response.headers.get('X-Frame-Options')).to.eql('SAMEORIGIN');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/gigs"
+      }
+    }
+  ]
+}

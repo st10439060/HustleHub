@@ -1,0 +1,74 @@
+import React, { useEffect, useMemo, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import './styles.css';
+
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const emptyGig = { title: '', description: '', category: 'Design', price: '75', deliveryDays: '7' };
+
+async function api(path, options = {}) {
+  const token = localStorage.getItem('hustlehub_token');
+  const response = await fetch(`${API}${path}`, { ...options, headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(options.headers || {}) } });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.error || 'Something went wrong.');
+  return data;
+}
+
+function App() {
+  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('hustlehub_user') || 'null'));
+  const [page, setPage] = useState('discover');
+  const [authMode, setAuthMode] = useState('login');
+  const [notice, setNotice] = useState('');
+  const [error, setError] = useState('');
+  const [gigs, setGigs] = useState([]);
+  const [bookings, setBookings] = useState([]);
+  const [income, setIncome] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('All');
+  const [authForm, setAuthForm] = useState({ name: '', email: '', password: '', role: 'client' });
+  const [gigForm, setGigForm] = useState(emptyGig);
+
+  const categories = useMemo(() => ['All', ...new Set(gigs.map((gig) => gig.category))], [gigs]);
+  const visibleGigs = gigs.filter((gig) => (category === 'All' || gig.category === category) && `${gig.title} ${gig.description}`.toLowerCase().includes(query.toLowerCase()));
+
+  useEffect(() => { loadGigs(); }, []);
+  useEffect(() => { if (user && page === 'bookings') loadBookings(); if (user && page === 'income') loadIncome(); if (user?.role === 'admin' && page === 'admin') loadUsers(); }, [page, user]);
+
+  async function loadGigs() { try { setGigs((await api('/gigs')).gigs); } catch (err) { setError(err.message); } }
+  async function loadBookings() { try { setBookings((await api('/bookings')).bookings); } catch (err) { setError(err.message); } }
+  async function loadIncome() { try { setIncome(await api('/income')); } catch (err) { setError(err.message); } }
+  async function loadUsers() { try { setUsers((await api('/admin/users')).users); } catch (err) { setError(err.message); } }
+  function showError(err) { setError(err.message); setNotice(''); }
+  function clearMessages() { setError(''); setNotice(''); }
+
+  async function submitAuth(event) {
+    event.preventDefault(); clearMessages();
+    try { const data = await api(`/auth/${authMode === 'login' ? 'login' : 'register'}`, { method: 'POST', body: JSON.stringify(authForm) }); localStorage.setItem('hustlehub_token', data.token); localStorage.setItem('hustlehub_user', JSON.stringify(data.user)); setUser(data.user); setPage('discover'); setNotice(authMode === 'login' ? 'Welcome back.' : 'Your account is ready.'); }
+    catch (err) { showError(err); }
+  }
+  function logout() { localStorage.removeItem('hustlehub_token'); localStorage.removeItem('hustlehub_user'); setUser(null); setPage('discover'); setNotice('You have been signed out.'); }
+  async function bookGig(gig) { if (!user) { setAuthMode('login'); setPage('auth'); return; } const requirements = window.prompt('Tell the freelancer what you need (optional):', ''); if (requirements === null) return; try { await api('/bookings', { method: 'POST', body: JSON.stringify({ gigId: gig._id, requirements }) }); setNotice('Booking confirmed. A simulated payment receipt was created.'); setPage('bookings'); } catch (err) { showError(err); } }
+  async function saveGig(event) { event.preventDefault(); clearMessages(); try { await api('/gigs', { method: 'POST', body: JSON.stringify({ ...gigForm, price: Number(gigForm.price), deliveryDays: Number(gigForm.deliveryDays) }) }); setGigForm(emptyGig); setNotice('Your service is now live.'); await loadGigs(); setPage('discover'); } catch (err) { showError(err); } }
+  async function updateBooking(id, status) { try { await api(`/bookings/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status }) }); setNotice('Booking status updated.'); loadBookings(); } catch (err) { showError(err); } }
+
+  return <div className="app-shell"><header className="topbar"><button className="brand" onClick={() => setPage('discover')}><span className="brand-mark">H+</span><span>HustleHub<span className="brand-plus">+</span></span></button><nav><button className={page === 'discover' ? 'active' : ''} onClick={() => setPage('discover')}>Discover</button>{user?.role === 'freelancer' && <><button className={page === 'create' ? 'active' : ''} onClick={() => setPage('create')}>Post a service</button><button className={page === 'income' ? 'active' : ''} onClick={() => setPage('income')}>Income</button></>}{user?.role === 'admin' && <button className={page === 'admin' ? 'active' : ''} onClick={() => setPage('admin')}>Admin</button>}{user && <button className={page === 'bookings' ? 'active' : ''} onClick={() => setPage('bookings')}>Bookings</button>}</nav><div className="account">{user ? <><span className="role-pill">{user.role}</span><button className="avatar" onClick={logout}>{user.name[0]}</button></> : <button className="button button-dark compact" onClick={() => setPage('auth')}>Sign in</button>}</div></header><main>
+    {notice && <div className="notice success">{notice}<button onClick={clearMessages}>Dismiss</button></div>}{error && <div className="notice error">{error}<button onClick={clearMessages}>Dismiss</button></div>}
+    {page === 'auth' && <AuthPage mode={authMode} setMode={setAuthMode} form={authForm} setForm={setAuthForm} submit={submitAuth} />}
+    {page === 'discover' && <Discover gigs={visibleGigs} categories={categories} category={category} setCategory={setCategory} query={query} setQuery={setQuery} book={bookGig} user={user} />}
+    {page === 'create' && user?.role === 'freelancer' && <CreateGig form={gigForm} setForm={setGigForm} submit={saveGig} />}
+    {page === 'bookings' && user && <Bookings bookings={bookings} user={user} update={updateBooking} />}
+    {page === 'income' && user?.role === 'freelancer' && <Income data={income} />}
+    {page === 'admin' && user?.role === 'admin' && <Admin users={users} />}
+  </main><footer><span>HustleHub<span className="brand-plus">+</span></span><span>Independent work, made simpler.</span><span>Secure marketplace demo</span></footer></div>;
+}
+
+function AuthPage({ mode, setMode, form, setForm, submit }) { return <section className="auth-layout"><div className="auth-copy"><span className="eyebrow">THE INDEPENDENT ECONOMY</span><h1>Make your next move count.</h1><p>Find specialists who care about the details, or turn the thing you do best into a service people can book.</p><div className="stats"><span><strong>10k+</strong> active makers</span><span><strong>4.9/5</strong> average rating</span></div></div><form className="panel auth-card" onSubmit={submit}><span className="eyebrow">{mode === 'login' ? 'WELCOME BACK' : 'JOIN HUSTLEHUB+'}</span><h2>{mode === 'login' ? 'Sign in to continue' : 'Create your account'}</h2>{mode === 'register' && <><label>Full name<input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></label><label>Work as<select value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}><option value="client">Client</option><option value="freelancer">Freelancer</option></select></label></>}<label>Email address<input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} /></label><label>Password<input type="password" required minLength="8" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} /></label><button className="button button-primary full">{mode === 'login' ? 'Sign in' : 'Create account'}</button><p className="switch">{mode === 'login' ? 'New to HustleHub+?' : 'Already have an account?'} <button type="button" onClick={() => setMode(mode === 'login' ? 'register' : 'login')}>{mode === 'login' ? 'Create an account' : 'Sign in'}</button></p></form></section>; }
+function Discover({ gigs, categories, category, setCategory, query, setQuery, book, user }) { return <section><div className="hero"><div><span className="eyebrow">WORK, WITH INTENTION</span><h1>Find the right people<br /><em>for the work ahead.</em></h1><p>Specialists for the moments that matter. Clear scope, honest pricing, and work that moves you forward.</p></div><div className="hero-note"><span className="note-dot"></span><span>Curated services<br /><strong>from independent makers</strong></span></div></div><div className="toolbar"><div className="search"><span>⌕</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search services or skills" /></div><div className="filters">{categories.map((item) => <button key={item} className={category === item ? 'filter active' : 'filter'} onClick={() => setCategory(item)}>{item}</button>)}</div></div><div className="section-head"><div><span className="eyebrow">EXPLORE SERVICES</span><h2>Made for your next milestone</h2></div><span className="result-count">{gigs.length} services</span></div><div className="gig-grid">{gigs.length ? gigs.map((gig) => <article className="gig-card" key={gig._id}><div className="gig-art"><span>{gig.category.slice(0, 2).toUpperCase()}</span><small>{gig.deliveryDays} day delivery</small></div><div className="gig-body"><span className="category">{gig.category}</span><h3>{gig.title}</h3><p>{gig.description}</p><div className="gig-meta"><span className="maker">{gig.freelancer?.name || 'Independent maker'}</span><strong>£{gig.price}</strong></div><button className="button button-dark full" onClick={() => book(gig)}>{user?.role === 'freelancer' ? 'Client booking only' : 'Book this service'}</button></div></article>) : <div className="empty panel"><h3>No services yet</h3><p>Try another search, or be the first freelancer to post a service.</p></div>}</div></section>; }
+function CreateGig({ form, setForm, submit }) { return <section className="narrow"><div className="page-heading"><span className="eyebrow">BUILD YOUR OFFER</span><h1>Post a service</h1><p>Give clients a clear promise and a simple way to say yes.</p></div><form className="panel form-card" onSubmit={submit}><label>Service title<input required minLength="3" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="e.g. I will design a thoughtful brand identity" /></label><label>Description<textarea required minLength="20" rows="5" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="Describe what a client receives..." /></label><div className="form-row"><label>Category<select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })}><option>Design</option><option>Development</option><option>Writing</option><option>Marketing</option><option>Video</option></select></label><label>Price (£)<input type="number" min="1" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} /></label><label>Delivery days<input type="number" min="1" value={form.deliveryDays} onChange={(e) => setForm({ ...form, deliveryDays: e.target.value })} /></label></div><button className="button button-primary">Publish service</button></form></section>; }
+function Bookings({ bookings, user, update }) { return <section className="narrow"><div className="page-heading"><span className="eyebrow">YOUR WORKSPACE</span><h1>{user.role === 'client' ? 'Your bookings' : 'Incoming work'}</h1><p>Keep every project, handoff, and next step in one calm place.</p></div><div className="booking-list">{bookings.length ? bookings.map((item) => <article className="panel booking" key={item._id}><div><span className="category">{item.status.replace('_', ' ')}</span><h3>{item.gig?.title || 'Service booking'}</h3><p>{user.role === 'client' ? `With ${item.freelancer?.name}` : `For ${item.client?.name}`}</p></div><div className="booking-side"><strong>£{item.amount}</strong>{user.role === 'client' && item.status === 'pending' && <button className="button button-light" onClick={() => update(item._id, 'cancelled')}>Cancel</button>}{user.role === 'freelancer' && item.status === 'pending' && <button className="button button-primary" onClick={() => update(item._id, 'accepted')}>Accept</button>}{user.role === 'freelancer' && item.status === 'accepted' && <button className="button button-light" onClick={() => update(item._id, 'in_progress')}>Start work</button>}{user.role === 'freelancer' && item.status === 'in_progress' && <button className="button button-primary" onClick={() => update(item._id, 'completed')}>Mark complete</button>}</div></article>) : <div className="empty panel"><h3>Your workspace is clear</h3><p>Bookings will appear here once you get started.</p></div>}</div></section>; }
+function Admin({ users }) { return <section className="narrow"><div className="page-heading"><span className="eyebrow">PLATFORM ADMINISTRATION</span><h1>People on the platform.</h1><p>Review registered accounts without exposing administrative controls to ordinary users.</p></div><div className="panel table"><h3>Registered accounts</h3>{users.map((account) => <div className="table-row" key={account.id}><span>{account.name}</span><span>{account.email}</span><strong>{account.role}</strong></div>)}</div></section>; }
+function Income({ data }) { return <section className="narrow"><div className="page-heading"><span className="eyebrow">FREELANCER FINANCE</span><h1>Know your numbers.</h1><p>A simple view of paid work, platform fees, and an estimated tax set-aside.</p></div>{data && <><div className="income-grid"><div className="metric"><span>Gross earnings</span><strong>£{data.summary.gross.toFixed(2)}</strong></div><div className="metric"><span>Platform fees</span><strong>£{data.summary.fees.toFixed(2)}</strong></div><div className="metric featured"><span>Available after fees</span><strong>£{data.summary.net.toFixed(2)}</strong></div><div className="metric"><span>Estimated tax set-aside</span><strong>£{data.summary.estimatedTax.toFixed(2)}</strong></div></div><div className="panel table"><h3>Payment history</h3>{data.transactions.length ? data.transactions.map((item) => <div className="table-row" key={item._id}><span>{new Date(item.createdAt).toLocaleDateString()}</span><span>Booking payment</span><strong>£{item.freelancerAmount.toFixed(2)}</strong></div>) : <p>No paid bookings yet.</p>}</div></>}</section>; }
+
+export default App;
+
+if (document.getElementById('root')) createRoot(document.getElementById('root')).render(<App />);

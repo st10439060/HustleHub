@@ -1,0 +1,281 @@
+2026-09-01 17:45:13 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:45:13 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:13 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:45:14 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:45:14 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:14 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:45:14 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:45:14 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:14 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:45:14 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:14 +0000] "POST /api/auth/register HTTP/1.1" 409 70 "-" "-"
+2026-09-01 17:45:14 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:14 +0000] "POST /api/auth/register HTTP/1.1" 422 123 "-" "-"
+2026-09-01 17:45:14 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:14 +0000] "POST /api/auth/register HTTP/1.1" 422 385 "-" "-"
+2026-09-01 17:45:14 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:14 +0000] "POST /api/auth/register HTTP/1.1" 422 129 "-" "-"
+2026-09-01 17:45:14 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:14 +0000] "POST /api/auth/register HTTP/1.1" 422 137 "-" "-"
+2026-09-01 17:45:15 [INFO]: User registered: plain@example.com (role: client)
+2026-09-01 17:45:15 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:15 +0000] "POST /api/auth/register HTTP/1.1" 201 362 "-" "-"
+2026-09-01 17:45:15 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:45:15 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:15 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:45:16 [INFO]: User logged in: jane@example.com (role: freelancer)
+2026-09-01 17:45:16 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:16 +0000] "POST /api/auth/login HTTP/1.1" 200 362 "-" "-"
+2026-09-01 17:45:16 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:45:16 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:16 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:45:17 [WARN]: Failed login attempt (wrong password): jane@example.com
+2026-09-01 17:45:17 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:17 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-09-01 17:45:17 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:45:17 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:17 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:45:17 [WARN]: Failed login attempt (unknown email): nobody@example.com
+2026-09-01 17:45:17 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:17 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-09-01 17:45:18 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:45:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:18 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:45:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:18 +0000] "POST /api/auth/login HTTP/1.1" 422 113 "-" "-"
+2026-09-01 17:45:18 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:45:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:18 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:45:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:18 +0000] "GET /api/auth/me HTTP/1.1" 200 161 "-" "-"
+2026-09-01 17:45:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:18 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-09-01 17:45:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:18 +0000] "GET /api/auth/me HTTP/1.1" 401 57 "-" "-"
+2026-09-01 17:45:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:18 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-09-01 17:45:19 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:45:19 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:19 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:45:19 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:19 +0000] "GET /api/protected/profile HTTP/1.1" 200 126 "-" "-"
+2026-09-01 17:45:19 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:19 +0000] "GET /api/protected/profile HTTP/1.1" 401 82 "-" "-"
+2026-09-01 17:45:19 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:19 +0000] "GET /api/nonexistent HTTP/1.1" 404 65 "-" "-"
+2026-09-01 17:45:19 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:45:19 +0000] "POST /api/auth/register HTTP/1.1" 422 607 "-" "-"
+2026-09-01 17:54:17 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:54:17 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:17 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:54:17 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:54:17 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:17 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:54:18 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:54:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:18 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:54:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:18 +0000] "POST /api/auth/register HTTP/1.1" 409 70 "-" "-"
+2026-09-01 17:54:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:18 +0000] "POST /api/auth/register HTTP/1.1" 422 123 "-" "-"
+2026-09-01 17:54:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:18 +0000] "POST /api/auth/register HTTP/1.1" 422 385 "-" "-"
+2026-09-01 17:54:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:18 +0000] "POST /api/auth/register HTTP/1.1" 422 129 "-" "-"
+2026-09-01 17:54:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:18 +0000] "POST /api/auth/register HTTP/1.1" 422 137 "-" "-"
+2026-09-01 17:54:18 [INFO]: User registered: plain@example.com (role: client)
+2026-09-01 17:54:18 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:18 +0000] "POST /api/auth/register HTTP/1.1" 201 362 "-" "-"
+2026-09-01 17:54:19 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:54:19 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:19 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:54:19 [INFO]: User logged in: jane@example.com (role: freelancer)
+2026-09-01 17:54:19 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:19 +0000] "POST /api/auth/login HTTP/1.1" 200 362 "-" "-"
+2026-09-01 17:54:20 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:54:20 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:20 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:54:20 [WARN]: Failed login attempt (wrong password): jane@example.com
+2026-09-01 17:54:20 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:20 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-09-01 17:54:21 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:54:21 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:21 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:54:21 [WARN]: Failed login attempt (unknown email): nobody@example.com
+2026-09-01 17:54:21 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:21 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-09-01 17:54:21 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:54:21 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:21 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:54:21 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:21 +0000] "POST /api/auth/login HTTP/1.1" 422 113 "-" "-"
+2026-09-01 17:54:21 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:54:21 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:21 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:54:21 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:21 +0000] "GET /api/auth/me HTTP/1.1" 200 161 "-" "-"
+2026-09-01 17:54:21 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:21 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-09-01 17:54:21 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:21 +0000] "GET /api/auth/me HTTP/1.1" 401 57 "-" "-"
+2026-09-01 17:54:21 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:21 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-09-01 17:54:22 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-09-01 17:54:22 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:22 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-09-01 17:54:22 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:22 +0000] "GET /api/protected/profile HTTP/1.1" 200 126 "-" "-"
+2026-09-01 17:54:22 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:22 +0000] "GET /api/protected/profile HTTP/1.1" 401 82 "-" "-"
+2026-09-01 17:54:22 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:22 +0000] "GET /api/nonexistent HTTP/1.1" 404 65 "-" "-"
+2026-09-01 17:54:22 [INFO]: ::ffff:127.0.0.1 - - [01/Sep/2026:17:54:22 +0000] "POST /api/auth/register HTTP/1.1" 422 607 "-" "-"
+2026-09-01 20:13:54 [ERROR]: MongoDB connection error:
+2026-10-07 12:28:25 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:28:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:25 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:28:26 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:28:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:26 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:28:26 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:28:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:26 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:28:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:26 +0000] "POST /api/auth/register HTTP/1.1" 409 70 "-" "-"
+2026-10-07 12:28:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:26 +0000] "POST /api/auth/register HTTP/1.1" 422 123 "-" "-"
+2026-10-07 12:28:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:26 +0000] "POST /api/auth/register HTTP/1.1" 422 385 "-" "-"
+2026-10-07 12:28:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:26 +0000] "POST /api/auth/register HTTP/1.1" 422 129 "-" "-"
+2026-10-07 12:28:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:26 +0000] "POST /api/auth/register HTTP/1.1" 422 137 "-" "-"
+2026-10-07 12:28:27 [INFO]: User registered: plain@example.com (role: client)
+2026-10-07 12:28:27 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:27 +0000] "POST /api/auth/register HTTP/1.1" 201 362 "-" "-"
+2026-10-07 12:28:27 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:28:27 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:27 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:28:28 [INFO]: User logged in: jane@example.com (role: freelancer)
+2026-10-07 12:28:28 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:28 +0000] "POST /api/auth/login HTTP/1.1" 200 362 "-" "-"
+2026-10-07 12:28:28 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:28:28 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:28 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:28:29 [WARN]: Failed login attempt (wrong password): jane@example.com
+2026-10-07 12:28:29 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:29 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-10-07 12:28:29 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:28:29 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:29 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:28:29 [WARN]: Failed login attempt (unknown email): nobody@example.com
+2026-10-07 12:28:29 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:29 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-10-07 12:28:30 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:28:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:30 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:28:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:30 +0000] "POST /api/auth/login HTTP/1.1" 422 113 "-" "-"
+2026-10-07 12:28:30 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:28:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:30 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:28:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:30 +0000] "GET /api/auth/me HTTP/1.1" 200 161 "-" "-"
+2026-10-07 12:28:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:30 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-10-07 12:28:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:30 +0000] "GET /api/auth/me HTTP/1.1" 401 57 "-" "-"
+2026-10-07 12:28:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:30 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-10-07 12:28:31 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:28:31 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:31 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:28:31 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:31 +0000] "GET /api/protected/profile HTTP/1.1" 200 126 "-" "-"
+2026-10-07 12:28:31 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:31 +0000] "GET /api/protected/profile HTTP/1.1" 401 82 "-" "-"
+2026-10-07 12:28:31 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:31 +0000] "GET /api/nonexistent HTTP/1.1" 404 65 "-" "-"
+2026-10-07 12:28:31 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:28:31 +0000] "POST /api/auth/register HTTP/1.1" 422 607 "-" "-"
+2026-10-07 12:29:42 [INFO]: User registered: freelancer@example.com (role: freelancer)
+2026-10-07 12:29:42 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:42 +0000] "POST /api/auth/register HTTP/1.1" 201 377 "-" "-"
+2026-10-07 12:29:43 [INFO]: User registered: client@example.com (role: client)
+2026-10-07 12:29:43 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:43 +0000] "POST /api/auth/register HTTP/1.1" 201 359 "-" "-"
+2026-10-07 12:29:43 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:43 +0000] "POST /api/gigs HTTP/1.1" 201 364 "-" "-"
+2026-10-07 12:29:43 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:43 +0000] "POST /api/bookings HTTP/1.1" 201 821 "-" "-"
+2026-10-07 12:29:43 [INFO]: User registered: blocked@example.com (role: client)
+2026-10-07 12:29:43 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:43 +0000] "POST /api/auth/register HTTP/1.1" 201 360 "-" "-"
+2026-10-07 12:29:43 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:43 +0000] "POST /api/gigs HTTP/1.1" 403 78 "-" "-"
+2026-10-07 12:29:44 [INFO]: User registered: first@example.com (role: freelancer)
+2026-10-07 12:29:44 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:44 +0000] "POST /api/auth/register HTTP/1.1" 201 367 "-" "-"
+2026-10-07 12:29:44 [INFO]: User registered: second@example.com (role: freelancer)
+2026-10-07 12:29:44 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:44 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:44 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:44 +0000] "POST /api/gigs HTTP/1.1" 201 342 "-" "-"
+2026-10-07 12:29:44 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:44 +0000] "PATCH /api/gigs/6ac63b3841a5dc8014983436 HTTP/1.1" 404 62 "-" "-"
+2026-10-07 12:29:46 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:29:46 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:46 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:47 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:29:47 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:47 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:47 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:29:47 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:47 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:47 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:47 +0000] "POST /api/auth/register HTTP/1.1" 409 70 "-" "-"
+2026-10-07 12:29:47 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:47 +0000] "POST /api/auth/register HTTP/1.1" 422 123 "-" "-"
+2026-10-07 12:29:47 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:47 +0000] "POST /api/auth/register HTTP/1.1" 422 385 "-" "-"
+2026-10-07 12:29:47 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:47 +0000] "POST /api/auth/register HTTP/1.1" 422 129 "-" "-"
+2026-10-07 12:29:47 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:47 +0000] "POST /api/auth/register HTTP/1.1" 422 137 "-" "-"
+2026-10-07 12:29:48 [INFO]: User registered: plain@example.com (role: client)
+2026-10-07 12:29:48 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:48 +0000] "POST /api/auth/register HTTP/1.1" 201 362 "-" "-"
+2026-10-07 12:29:48 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:29:48 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:48 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:49 [INFO]: User logged in: jane@example.com (role: freelancer)
+2026-10-07 12:29:49 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:49 +0000] "POST /api/auth/login HTTP/1.1" 200 362 "-" "-"
+2026-10-07 12:29:49 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:29:49 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:49 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:50 [WARN]: Failed login attempt (wrong password): jane@example.com
+2026-10-07 12:29:50 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:50 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-10-07 12:29:50 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:29:50 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:50 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:50 [WARN]: Failed login attempt (unknown email): nobody@example.com
+2026-10-07 12:29:50 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:50 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-10-07 12:29:51 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:29:51 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:51 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:51 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:51 +0000] "POST /api/auth/login HTTP/1.1" 422 113 "-" "-"
+2026-10-07 12:29:51 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:29:51 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:51 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:51 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:51 +0000] "GET /api/auth/me HTTP/1.1" 200 161 "-" "-"
+2026-10-07 12:29:51 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:51 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-10-07 12:29:51 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:51 +0000] "GET /api/auth/me HTTP/1.1" 401 57 "-" "-"
+2026-10-07 12:29:51 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:51 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-10-07 12:29:52 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 12:29:52 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:52 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 12:29:52 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:52 +0000] "GET /api/protected/profile HTTP/1.1" 200 126 "-" "-"
+2026-10-07 12:29:52 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:52 +0000] "GET /api/protected/profile HTTP/1.1" 401 82 "-" "-"
+2026-10-07 12:29:52 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:52 +0000] "GET /api/nonexistent HTTP/1.1" 404 65 "-" "-"
+2026-10-07 12:29:52 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:12:29:52 +0000] "POST /api/auth/register HTTP/1.1" 422 607 "-" "-"
+2026-10-07 14:34:35 [ERROR]: MongoDB connection error:
+2026-10-07 15:01:01 [ERROR]: MongoDB connection error:
+2026-10-07 13:30:24 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:30:24 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:24 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:30:24 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:30:24 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:24 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:30:25 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:30:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:25 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:30:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:25 +0000] "POST /api/auth/register HTTP/1.1" 409 70 "-" "-"
+2026-10-07 13:30:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:25 +0000] "POST /api/auth/register HTTP/1.1" 422 123 "-" "-"
+2026-10-07 13:30:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:25 +0000] "POST /api/auth/register HTTP/1.1" 422 385 "-" "-"
+2026-10-07 13:30:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:25 +0000] "POST /api/auth/register HTTP/1.1" 422 129 "-" "-"
+2026-10-07 13:30:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:25 +0000] "POST /api/auth/register HTTP/1.1" 422 137 "-" "-"
+2026-10-07 13:30:25 [INFO]: User registered: plain@example.com (role: client)
+2026-10-07 13:30:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:25 +0000] "POST /api/auth/register HTTP/1.1" 201 362 "-" "-"
+2026-10-07 13:30:26 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/login HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/register HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/login HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/register HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/login HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/register HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/login HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/register HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "GET /api/auth/me HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "GET /api/auth/me HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "GET /api/auth/me HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "GET /api/auth/me HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/register HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "GET /api/protected/profile HTTP/1.1" 401 57 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "GET /api/protected/profile HTTP/1.1" 401 82 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "GET /api/nonexistent HTTP/1.1" 404 65 "-" "-"
+2026-10-07 13:30:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:26 +0000] "POST /api/auth/register HTTP/1.1" 429 85 "-" "-"
+2026-10-07 13:30:28 [INFO]: User registered: freelancer@example.com (role: freelancer)
+2026-10-07 13:30:28 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:28 +0000] "POST /api/auth/register HTTP/1.1" 201 377 "-" "-"
+2026-10-07 13:30:29 [INFO]: User registered: client@example.com (role: client)
+2026-10-07 13:30:29 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:29 +0000] "POST /api/auth/register HTTP/1.1" 201 359 "-" "-"
+2026-10-07 13:30:29 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:29 +0000] "POST /api/gigs HTTP/1.1" 201 364 "-" "-"
+2026-10-07 13:30:29 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:29 +0000] "POST /api/bookings HTTP/1.1" 201 821 "-" "-"
+2026-10-07 13:30:29 [INFO]: User registered: blocked@example.com (role: client)
+2026-10-07 13:30:29 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:29 +0000] "POST /api/auth/register HTTP/1.1" 201 360 "-" "-"
+2026-10-07 13:30:29 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:29 +0000] "POST /api/gigs HTTP/1.1" 403 78 "-" "-"
+2026-10-07 13:30:30 [INFO]: User registered: first@example.com (role: freelancer)
+2026-10-07 13:30:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:30 +0000] "POST /api/auth/register HTTP/1.1" 201 367 "-" "-"
+2026-10-07 13:30:30 [INFO]: User registered: second@example.com (role: freelancer)
+2026-10-07 13:30:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:30 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:30:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:30 +0000] "POST /api/gigs HTTP/1.1" 201 342 "-" "-"
+2026-10-07 13:30:30 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:30:30 +0000] "PATCH /api/gigs/6ac649762f0aa80ce4562311 HTTP/1.1" 404 62 "-" "-"
+2026-10-07 13:31:15 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:31:15 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:15 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:15 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:31:15 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:15 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:16 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:31:16 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:16 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:16 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:16 +0000] "POST /api/auth/register HTTP/1.1" 409 70 "-" "-"
+2026-10-07 13:31:16 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:16 +0000] "POST /api/auth/register HTTP/1.1" 422 123 "-" "-"
+2026-10-07 13:31:16 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:16 +0000] "POST /api/auth/register HTTP/1.1" 422 385 "-" "-"
+2026-10-07 13:31:16 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:16 +0000] "POST /api/auth/register HTTP/1.1" 422 129 "-" "-"
+2026-10-07 13:31:16 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:16 +0000] "POST /api/auth/register HTTP/1.1" 422 137 "-" "-"
+2026-10-07 13:31:17 [INFO]: User registered: plain@example.com (role: client)
+2026-10-07 13:31:17 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:17 +0000] "POST /api/auth/register HTTP/1.1" 201 362 "-" "-"
+2026-10-07 13:31:18 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:31:18 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:18 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:18 [INFO]: User logged in: jane@example.com (role: freelancer)
+2026-10-07 13:31:18 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:18 +0000] "POST /api/auth/login HTTP/1.1" 200 362 "-" "-"
+2026-10-07 13:31:19 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:31:19 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:19 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:19 [WARN]: Failed login attempt (wrong password): jane@example.com
+2026-10-07 13:31:19 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:19 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-10-07 13:31:20 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:31:20 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:20 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:20 [WARN]: Failed login attempt (unknown email): nobody@example.com
+2026-10-07 13:31:20 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:20 +0000] "POST /api/auth/login HTTP/1.1" 401 54 "-" "-"
+2026-10-07 13:31:20 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:31:20 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:20 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:21 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:21 +0000] "POST /api/auth/login HTTP/1.1" 422 113 "-" "-"
+2026-10-07 13:31:21 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:31:21 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:21 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:21 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:21 +0000] "GET /api/auth/me HTTP/1.1" 200 161 "-" "-"
+2026-10-07 13:31:21 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:21 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-10-07 13:31:21 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:21 +0000] "GET /api/auth/me HTTP/1.1" 401 57 "-" "-"
+2026-10-07 13:31:21 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:21 +0000] "GET /api/auth/me HTTP/1.1" 401 82 "-" "-"
+2026-10-07 13:31:22 [INFO]: User registered: jane@example.com (role: freelancer)
+2026-10-07 13:31:22 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:22 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:22 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:22 +0000] "GET /api/protected/profile HTTP/1.1" 200 126 "-" "-"
+2026-10-07 13:31:22 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:22 +0000] "GET /api/protected/profile HTTP/1.1" 401 82 "-" "-"
+2026-10-07 13:31:22 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:22 +0000] "GET /api/nonexistent HTTP/1.1" 404 65 "-" "-"
+2026-10-07 13:31:22 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:22 +0000] "POST /api/auth/register HTTP/1.1" 422 607 "-" "-"
+2026-10-07 13:31:24 [INFO]: User registered: freelancer@example.com (role: freelancer)
+2026-10-07 13:31:24 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:24 +0000] "POST /api/auth/register HTTP/1.1" 201 377 "-" "-"
+2026-10-07 13:31:24 [INFO]: User registered: client@example.com (role: client)
+2026-10-07 13:31:24 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:24 +0000] "POST /api/auth/register HTTP/1.1" 201 359 "-" "-"
+2026-10-07 13:31:24 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:24 +0000] "POST /api/gigs HTTP/1.1" 201 364 "-" "-"
+2026-10-07 13:31:24 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:24 +0000] "POST /api/bookings HTTP/1.1" 201 821 "-" "-"
+2026-10-07 13:31:25 [INFO]: User registered: blocked@example.com (role: client)
+2026-10-07 13:31:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:25 +0000] "POST /api/auth/register HTTP/1.1" 201 360 "-" "-"
+2026-10-07 13:31:25 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:25 +0000] "POST /api/gigs HTTP/1.1" 403 78 "-" "-"
+2026-10-07 13:31:26 [INFO]: User registered: first@example.com (role: freelancer)
+2026-10-07 13:31:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:26 +0000] "POST /api/auth/register HTTP/1.1" 201 367 "-" "-"
+2026-10-07 13:31:26 [INFO]: User registered: second@example.com (role: freelancer)
+2026-10-07 13:31:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:26 +0000] "POST /api/auth/register HTTP/1.1" 201 369 "-" "-"
+2026-10-07 13:31:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:26 +0000] "POST /api/gigs HTTP/1.1" 201 342 "-" "-"
+2026-10-07 13:31:26 [INFO]: ::ffff:127.0.0.1 - - [07/Oct/2026:13:31:26 +0000] "PATCH /api/gigs/6ac649aec5fb935c78a7a14c HTTP/1.1" 404 62 "-" "-"
+2026-10-07 15:33:18 [ERROR]: MongoDB connection error:
